@@ -3,9 +3,14 @@ package com.company;
 public class Punkt {
     private int x, y;
 
-    Punkt(){
+    public Punkt(){
         x = 0;
         y = 0;
+    }
+
+    public Punkt(Punkt p){
+        x = getX();
+        y = getY();
     }
 
     public void setX(int x){
