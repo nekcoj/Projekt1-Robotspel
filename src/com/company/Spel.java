@@ -4,12 +4,27 @@ import java.util.Scanner;
 
 public class Spel {
 
+    public Spel() {
+    }
+
     private Robot[] rVekt;
 
-    public void antRobotar(){
+    public void antRobot() {
         System.out.println("Hur många robotar vill du skapa?");
         Scanner scan = new Scanner(System.in);
-        int antRobotar = scan.nextInt();
-        rVekt = new Robot[antRobotar];
+        int antRobot = scan.nextInt();
+        rVekt = new Robot[antRobot];
+        skapaRobot();
+    }
+
+    public void skapaRobot() {
+        for (int i = 0; i < rVekt.length; i++) {
+            if (i % 2 == 0) {
+                rVekt[i] = new Gepard();
+            } else {
+                rVekt[i] = new Zebra();
+            }
+        }
     }
 }
+

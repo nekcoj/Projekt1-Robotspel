@@ -1,4 +1,8 @@
 package com.company;
 
-public class Gepard {
+public class Gepard extends Robot {
+
+    public Gepard() {   //defaultkonstruktor
+
+    }
 }
