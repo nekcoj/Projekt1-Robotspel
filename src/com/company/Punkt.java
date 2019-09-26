@@ -1,39 +1,45 @@
 package com.company;
 
 public class Punkt {
-    private int x, y;
+    private double x, y;
 
     public Punkt() {
-        x = 0;
-        y = 0;
-    }
-
-    public Punkt(Punkt p) {
         x = getX();
         y = getY();
     }
 
-    public void setX(int x) {
-        if (x > 0) {
-            this.x = x;
+    /*public Punkt(Punkt p) {
+        x = getX();
+        y = getY();
+    }*/
+
+    public void setX(double x) {
+        if (x > 5) {
+            this.x += x;
         } else {
-            x = 0;
+            this.x -= x;
         }
     }
 
-    public int getX() {
-        return x;
+    public double getX() {
+        x = Math.random() * (400 - 1) + 1;
+        return Math.round(x);
     }
 
-    public void setY(int y) {
-        if (y > 0) {
-            this.y = y;
+    public void setY(double y) {
+        if (y > 5) {
+            this.y += y;
         } else {
-            y = 0;
+            this.y -= y;
         }
     }
 
-    public int getY() {
-        return y;
+    public double getY() {
+        y = Math.random() * (400 - 1) + 1;
+        return Math.round(y);
+    }
+
+    public void printInfo() {
+        System.out.printf("Punkt med värdet x: %.2f och y: %.2f%n", this.x, this.y);
     }
 }
