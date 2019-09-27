@@ -9,6 +9,7 @@ public class Spel extends JPanel {
     public Robot[] rVekt;
 
     public Spel() {
+
         JFrame s = new Spelplan();
         s.setVisible(true);
         skapaRobot(antRobot());
@@ -61,18 +62,6 @@ public class Spel extends JPanel {
             rVekt[1].printInfo();
 
         }
-    }
-    @Override
-    public void paintComponent(Graphics g){
-        super.paintComponent(g);
-
-        g.setColor(Color.GREEN);
-        g.fillRect(0,0, 400,400);
-
-        g.setColor(Color.RED);
-        g.fillRect(5,5,10,10);
-
-
     }
 }
 

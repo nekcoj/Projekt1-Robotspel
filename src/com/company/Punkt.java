@@ -6,15 +6,16 @@ public class Punkt {
     public Punkt() {
         x = getX();
         y = getY();
+        //System.out.println("I Punkt default");
     }
 
     public Punkt(int h, int w){
         this.x += h;
         this.y += w;
-        System.out.println("I punkt int, int");
+        //System.out.println("I punkt int, int");
     }
 
-    public void setX(double x) {//metod för att flytta objektet längs x-axeln
+    public void setX(double x) {        //metod för att flytta objektet längs x-axeln
         double xRest = x;
         for(int i = 0; i < x; i++){
             xRest--;

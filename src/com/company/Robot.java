@@ -6,7 +6,7 @@ public class Robot {
     public Robot() { //konstruktor
         startPunkt = new Punkt();
         slutPunkt = new Punkt(10,10);
-        System.out.println("I Punkts default");
+        System.out.println("I Robot default");
     }
 
     public void printInfo() {
