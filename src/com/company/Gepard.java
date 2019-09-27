@@ -1,9 +1,10 @@
 package com.company;
 
 public class Gepard extends Robot {
-
+    private boolean hungry;
 
     public Gepard() {   //defaultkonstruktor
+        hungry = true;
         System.out.println("I Gepard default");
     }
 

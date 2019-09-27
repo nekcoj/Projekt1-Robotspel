@@ -4,6 +4,7 @@ public class Zebra extends Robot {
 
     public Zebra() { //defaultkonstruktor
         System.out.println("I Zebra default");
+
     }
 
     @Override
