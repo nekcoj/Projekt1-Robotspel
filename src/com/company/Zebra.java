@@ -10,18 +10,19 @@ public class Zebra extends Robot implements RobotInterface{
 
     }
 
-    public boolean getStatus(){
+    public boolean getStatus(){ //returnerar status true or false om zebran lever eller inte
         return isAlive;
     }
 
     @Override
-    public void setDead(){
+    public void setDead(){      //en metod som vi kallar på när geparden äter upp zebran.
         this.isAlive = false;
-        System.out.println("En Zebra dog!");
+        //"Zebra kyrkogård"
         this.startPunkt.setX(-200);
-        this.startPunkt.setY(-200);     //om vi hade visat zebran grafiskt så hade vi slutat visa zebran här.
+        this.startPunkt.setY(-200);
     }
 
+    //används till test utskrift för att kolla position samt status på objektet.
     @Override
     public void printInfo() {
         System.out.println("Zebra med:");

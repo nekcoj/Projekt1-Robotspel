@@ -3,7 +3,7 @@ package com.company;
 
 import javax.swing.*;
 import java.awt.*;
-
+//denna klass användes endast när vi testade att skapa grafiska rutor osv.
 public class Spelplan extends JFrame {
     //private JFrame spelplan = new JFrame("Robotar");    //skapar en spelplan (fönster)
     //public JPanel plan = new JPanel();                     //skapar en panel i fönstret

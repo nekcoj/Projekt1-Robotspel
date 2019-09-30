@@ -10,11 +10,12 @@ public class Gepard extends Robot implements RobotInterface {
     @Override
     public void setFull(){
         hungrig = false;
-        System.out.println("Geparden är mätt");
+        System.out.println("Geparden är mätt"); //Test utskrift för att kolla så vi faktiskt går in i metoden.
     }
     @Override
     public void setHungrig(){
         hungrig = true;
+        System.out.printf("%nGeparden är hungrig igen!%n");
     }
     @Override
     public boolean getStatus(){

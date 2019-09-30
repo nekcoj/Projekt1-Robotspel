@@ -15,6 +15,7 @@ public class Spel implements SpelInterface {
 
     }
 
+    //metod som kallas på för att användaren ska mata in antal robotar som ska finnas i "spelet".
     public int antRobot() {
         System.out.println("Hur många robotar vill du skapa?");
         Scanner scan = new Scanner(System.in);
@@ -22,8 +23,8 @@ public class Spel implements SpelInterface {
         return antRobot;
     }
 
+    //metod som skapar robotar. kommer alltid skapa lika många eller fler zebror än geparder.
     public void skapaRobot(int antRobot) {
-        //skapar robotar. kommer alltid skapa lika många eller fler zebror än geparder.
         rVekt = new Robot[antRobot];
         for (int i = 0; i < rVekt.length; i++) {
             if (i % 2 == 0) {
@@ -34,13 +35,14 @@ public class Spel implements SpelInterface {
         }
     }
 
-    public void flyttaRobot() {             //metod som flyttar robotarna om vissa parametrar uppfylls.(om geparden är hungrig, om zebran lever.
+    //metod som flyttar robotarna om vissa parametrar uppfylls.(om geparden är hungrig, om zebran lever).
+    public void flyttaRobot() {
         for (int stega = 0; stega < 5; stega++) {
             for (int i = 0; i < rVekt.length; i++) {
                 if (rVekt[i].getStatus()) {
                     double riktning = Math.round(Math.random() * (4 - 1) + 1);      //slumpmässigt tal som bestämmer vilket håll roboten ska gå.
                     switch ((int) riktning) {
-                        case 1:         //adderar till x ko-ordinat
+                        case 1:         //adderar till x koordinat
                             rVekt[i].startPunkt.setX(rVekt[i].startPunkt.getX() + (Math.round(Math.random() * (10 - 1) + 1)));
                             if (rVekt[i].startPunkt.getX() > 50 && rVekt[i].getStatus()) {
                                 rVekt[i].startPunkt.setX(50);
@@ -49,7 +51,7 @@ public class Spel implements SpelInterface {
                             }
                             kollaPosition();
                             break;
-                        case 2:         //adderar till y co-ordinat
+                        case 2:         //adderar till y koordinat
                             rVekt[i].startPunkt.setY(rVekt[i].startPunkt.getY() + (Math.round(Math.random() * (10 - 1) + 1)));
                             if (rVekt[i].startPunkt.getY() > 50 && rVekt[i].getStatus()) {
                                 rVekt[i].startPunkt.setY(50);
@@ -58,7 +60,7 @@ public class Spel implements SpelInterface {
                             }
                             kollaPosition();
                             break;
-                        case 3:         //subtraherar x co-ordinat
+                        case 3:         //subtraherar x koordinat
                             rVekt[i].startPunkt.setX(rVekt[i].startPunkt.getX() - (Math.round(Math.random() * (10 - 1) + 1)));
                             if (rVekt[i].startPunkt.getX() < 0 && rVekt[i].getStatus()) {
                                 rVekt[i].startPunkt.setX(0);
@@ -67,7 +69,7 @@ public class Spel implements SpelInterface {
                             }
                             kollaPosition();
                             break;
-                        case 4:         //subtraherar y co-ordinat
+                        case 4:         //subtraherar y koordinat
                             rVekt[i].startPunkt.setY(rVekt[i].startPunkt.getY() - (Math.round(Math.random() * (10 - 1) + 1)));
                             if (rVekt[i].startPunkt.getY() < 0 && rVekt[i].getStatus()) {
                                 rVekt[i].startPunkt.setY(0);
@@ -93,34 +95,41 @@ public class Spel implements SpelInterface {
             if (i % 2 == 0) {
                 for (int j = 0; j < rVekt.length; j++) {
                     if (j % 2 != 0) {
+                        //om zebrans x-pos = gepardens x-pos && zebrans y-pos = gepardens y-pos && geparden är hungrig.
                         if (rVekt[j].startPunkt.getX() == rVekt[i].startPunkt.getX() && rVekt[j].startPunkt.getY() == rVekt[i].startPunkt.getY()
                                 && rVekt[j].getHungrig()) {
-                            System.out.println("Zebra på plats " + i + " dog.");
+                            System.out.print("Zebra på plats " + i + " dog ");
+                            rVekt[i].startPunkt.printInfo();
                             rVekt[i].setDead();
-                            System.out.println("och är begravd på: x: " + rVekt[i].startPunkt.getX() + " y: " + rVekt[i].startPunkt.getY());
-                            System.out.println("Gepard på plats " + j + " är mätt");
+                            System.out.println("och skickas till Zebra kyrkogården. ");
+                                    System.out.println("Gepard på plats " + j + " är mätt");
                             rVekt[j].setFull();
+                            rVekt[j].startPunkt.printInfo();
+
+                            //övertydlig information ovan så man ser på vilken punkt zebran dog.
                         }
                     }
                 }
             }
         }
     }
-    public void test(){         //test metod som skriver ut information om objekten
-        for(int i = 0; i < rVekt.length; i++){
+
+    public void test() {         //test metod som skriver ut information om objekten
+        for (int i = 0; i < rVekt.length; i++) {
             rVekt[i].printInfo();
         }
     }
-    public boolean levandeZebra(){          //metod som kollar om det fortfarande finns zebror som lever och returnerar true/false.
+
+    public boolean levandeZebra() {          //metod som kollar om det fortfarande finns zebror som lever och returnerar true/false.
         int levandeZebra = 0;
-        for(int i = 0; i < rVekt.length; i++){
-            if(i%2==0){
-                if(rVekt[i].getStatus()){
+        for (int i = 0; i < rVekt.length; i++) {
+            if (i % 2 == 0) {
+                if (rVekt[i].getStatus()) {
                     levandeZebra++;
                 }
             }
         }
-        if(levandeZebra > 0){
+        if (levandeZebra > 0) {
             return true;
         } else {
             return false;

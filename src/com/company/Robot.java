@@ -8,19 +8,21 @@ public class Robot {
         //System.out.println("I Robot default");
     }
 
-    public void setFull(){}
+    public void setFull(){} //endast till för att vi ska kunna använda Gepard-klassens motsvarighet.
 
-    public void setDead(){}
+    public void setDead(){} //endast till för att vi ska kunna använda Zebra-klassens motsvarighet
 
+    //endast till för att vi ska kunna använda Gepard-klassens motsvarighet.
     public boolean getHungrig(){
         return true;
     }
 
+    //endast till för att vi ska kunna använda Zebra- & Gepard-klassens motsvarighet
     public boolean getStatus(){
         return true;
     }
 
-    public void setHungrig(){}
+    public void setHungrig(){} //endast till för att vi ska kunna använda Gepard-klassens motsvarighet.
 
 
     public void printInfo() {
