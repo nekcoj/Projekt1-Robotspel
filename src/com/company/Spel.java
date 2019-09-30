@@ -1,7 +1,6 @@
 package com.company;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.Scanner;
 
 public class Spel extends JPanel {
@@ -64,5 +63,17 @@ public class Spel extends JPanel {
         }
     }
 }
+int pos = 0;
+for (int i = 0; i<vecto.length; i++){
+    if(i%2==0){
+        break;
+        }
+    for(int j = 0; j<vector.length; j++){
+        if(j%2!=0){
+            if(vector[j].getX() == vector[i].getX() && vectpr[j].getY() == vector[i].getY()){
+                veckor[i].alive = False;
+        }
 
-
+        }
+        }
+        }

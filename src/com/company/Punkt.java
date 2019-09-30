@@ -9,7 +9,7 @@ public class Punkt {
         //System.out.println("I Punkt default");
     }
 
-    public Punkt(int h, int w){
+    public Punkt(int h, int w){     //endast till för att "illustrera" att roboten är en kvadrat.
         this.x += h;
         this.y += w;
         //System.out.println("I punkt int, int");

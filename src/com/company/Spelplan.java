@@ -19,6 +19,8 @@ public class Spelplan extends JFrame {
         JPanel spelplan = new JPanel();
         this.add(spelplan);
 
+
+        //Test att skapa spelplan med rutor.
         /*spelplan.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         spelplan.setSize(400, 400);         //bestämmer storleken på fönstret
         spelplan.setLocationRelativeTo(null);
