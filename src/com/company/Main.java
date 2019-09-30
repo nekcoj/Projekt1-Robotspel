@@ -1,6 +1,6 @@
 package com.company;
 
-public class Main implements SpelInterface {
+public class Main {
     public static void main(String[] args) {
         boolean continueGame = true;        //boolean för att avgöra om det finns zebror kvar och spelet ska köras igen.
         Spel s = new Spel();                //skapar spelet

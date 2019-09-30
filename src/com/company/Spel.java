@@ -2,7 +2,7 @@ package com.company;
 
 import java.util.Scanner;
 
-public class Spel implements SpelInterface {
+public class Spel {
     protected Spelplan s;
     public Robot[] rVekt;
 
@@ -47,7 +47,7 @@ public class Spel implements SpelInterface {
                             if (rVekt[i].startPunkt.getX() > 50 && rVekt[i].getStatus()) {
                                 rVekt[i].startPunkt.setX(50);
                                 double restSteg = rVekt[i].startPunkt.getX() - 50;
-                                rVekt[i].startPunkt.setY(restSteg);
+                                rVekt[i].startPunkt.setY(rVekt[i].startPunkt.getY() + restSteg);
                             }
                             kollaPosition();
                             break;
@@ -56,7 +56,7 @@ public class Spel implements SpelInterface {
                             if (rVekt[i].startPunkt.getY() > 50 && rVekt[i].getStatus()) {
                                 rVekt[i].startPunkt.setY(50);
                                 double restSteg = rVekt[i].startPunkt.getY() - 50;
-                                rVekt[i].startPunkt.setX(rVekt[i].startPunkt.getX() - restSteg);
+                                rVekt[i].startPunkt.setX(rVekt[i].startPunkt.getX() + restSteg);
                             }
                             kollaPosition();
                             break;
@@ -74,7 +74,7 @@ public class Spel implements SpelInterface {
                             if (rVekt[i].startPunkt.getY() < 0 && rVekt[i].getStatus()) {
                                 rVekt[i].startPunkt.setY(0);
                                 double restSteg = Math.abs(rVekt[i].startPunkt.getY());
-                                rVekt[i].startPunkt.setY(restSteg);
+                                rVekt[i].startPunkt.setX(rVekt[i].startPunkt.getX() - restSteg);
                             }
                             kollaPosition();
                             break;

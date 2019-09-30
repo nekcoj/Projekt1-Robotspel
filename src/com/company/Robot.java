@@ -1,6 +1,6 @@
 package com.company;
 
-public class Robot {
+public class Robot implements RobotInterface{
     protected Punkt startPunkt;
 
     public Robot() { //konstruktor
