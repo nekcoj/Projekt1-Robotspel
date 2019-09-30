@@ -1,18 +1,17 @@
 package com.company;
 
-import javax.swing.*;
 import java.util.Scanner;
 
-public class Spel extends JPanel {
+public class Spel implements SpelInterface {
     protected Spelplan s;
     public Robot[] rVekt;
 
     public Spel() {
 
-        JFrame s = new Spelplan();
-        s.setVisible(true);
-        skapaRobot(antRobot());
-        flyttaRobot();
+        //JFrame s = new Spelplan();
+        //s.setVisible(true);
+        //skapaRobot(antRobot());
+        //flyttaRobot();
 
     }
 
@@ -35,45 +34,96 @@ public class Spel extends JPanel {
         }
     }
 
-    public void flyttaRobot() {
-        for (int stega = 0; stega < 20; stega++) {
+    public void flyttaRobot() {             //metod som flyttar robotarna om vissa parametrar uppfylls.(om geparden är hungrig, om zebran lever.
+        for (int stega = 0; stega < 5; stega++) {
             for (int i = 0; i < rVekt.length; i++) {
-                double riktning = Math.random() * (4 - 1) + 1;      //slumpmässigt tal som bestämmer vilket håll roboten ska gå.
-                switch ((int) riktning) {
-                    case 1:
-                        rVekt[i].startPunkt.setX(Math.random() * (20 - 10) + 10);  //adderar till x co-ordinat
-                        break;
-                    case 2:
-                        rVekt[i].startPunkt.setY(Math.random() * (20 - 10) + 10); //adderar till y co-ordinat
-                        break;
-                    case 3:
-                        rVekt[i].startPunkt.setX2(Math.random() * (20 - 10) + 10); //subtraherar x co-ordinat
-                        break;
-                    case 4:
-                        rVekt[i].startPunkt.setY2(Math.random() * (20 - 10) + 10); //subtraherar y co-ordinat
-                        break;
-                    default:
-                        break;
+                if (rVekt[i].getStatus()) {
+                    double riktning = Math.round(Math.random() * (4 - 1) + 1);      //slumpmässigt tal som bestämmer vilket håll roboten ska gå.
+                    switch ((int) riktning) {
+                        case 1:         //adderar till x ko-ordinat
+                            rVekt[i].startPunkt.setX(rVekt[i].startPunkt.getX() + (Math.round(Math.random() * (10 - 1) + 1)));
+                            if (rVekt[i].startPunkt.getX() > 50 && rVekt[i].getStatus()) {
+                                rVekt[i].startPunkt.setX(50);
+                                double restSteg = rVekt[i].startPunkt.getX() - 50;
+                                rVekt[i].startPunkt.setY(restSteg);
+                            }
+                            kollaPosition();
+                            break;
+                        case 2:         //adderar till y co-ordinat
+                            rVekt[i].startPunkt.setY(rVekt[i].startPunkt.getY() + (Math.round(Math.random() * (10 - 1) + 1)));
+                            if (rVekt[i].startPunkt.getY() > 50 && rVekt[i].getStatus()) {
+                                rVekt[i].startPunkt.setY(50);
+                                double restSteg = rVekt[i].startPunkt.getY() - 50;
+                                rVekt[i].startPunkt.setX(rVekt[i].startPunkt.getX() - restSteg);
+                            }
+                            kollaPosition();
+                            break;
+                        case 3:         //subtraherar x co-ordinat
+                            rVekt[i].startPunkt.setX(rVekt[i].startPunkt.getX() - (Math.round(Math.random() * (10 - 1) + 1)));
+                            if (rVekt[i].startPunkt.getX() < 0 && rVekt[i].getStatus()) {
+                                rVekt[i].startPunkt.setX(0);
+                                double restSteg = Math.abs(rVekt[i].startPunkt.getX());
+                                rVekt[i].startPunkt.setY(rVekt[i].startPunkt.getY() - restSteg);
+                            }
+                            kollaPosition();
+                            break;
+                        case 4:         //subtraherar y co-ordinat
+                            rVekt[i].startPunkt.setY(rVekt[i].startPunkt.getY() - (Math.round(Math.random() * (10 - 1) + 1)));
+                            if (rVekt[i].startPunkt.getY() < 0 && rVekt[i].getStatus()) {
+                                rVekt[i].startPunkt.setY(0);
+                                double restSteg = Math.abs(rVekt[i].startPunkt.getY());
+                                rVekt[i].startPunkt.setY(restSteg);
+                            }
+                            kollaPosition();
+                            break;
+                        default:
+                            break;
 
+                    }
                 }
             }
             //Test utskrift
-            rVekt[1].printInfo();
+            test();
 
         }
     }
-}
-int pos = 0;
-for (int i = 0; i<vecto.length; i++){
-    if(i%2==0){
-        break;
-        }
-    for(int j = 0; j<vector.length; j++){
-        if(j%2!=0){
-            if(vector[j].getX() == vector[i].getX() && vectpr[j].getY() == vector[i].getY()){
-                veckor[i].alive = False;
-        }
 
+    public void kollaPosition() {           //metod som jämför zebrors och geparders position
+        for (int i = 0; i < rVekt.length; i++) {
+            if (i % 2 == 0) {
+                for (int j = 0; j < rVekt.length; j++) {
+                    if (j % 2 != 0) {
+                        if (rVekt[j].startPunkt.getX() == rVekt[i].startPunkt.getX() && rVekt[j].startPunkt.getY() == rVekt[i].startPunkt.getY()
+                                && rVekt[j].getHungrig()) {
+                            System.out.println("Zebra på plats " + i + " dog.");
+                            rVekt[i].setDead();
+                            System.out.println("och är begravd på: x: " + rVekt[i].startPunkt.getX() + " y: " + rVekt[i].startPunkt.getY());
+                            System.out.println("Gepard på plats " + j + " är mätt");
+                            rVekt[j].setFull();
+                        }
+                    }
+                }
+            }
         }
+    }
+    public void test(){         //test metod som skriver ut information om objekten
+        for(int i = 0; i < rVekt.length; i++){
+            rVekt[i].printInfo();
         }
+    }
+    public boolean levandeZebra(){          //metod som kollar om det fortfarande finns zebror som lever och returnerar true/false.
+        int levandeZebra = 0;
+        for(int i = 0; i < rVekt.length; i++){
+            if(i%2==0){
+                if(rVekt[i].getStatus()){
+                    levandeZebra++;
+                }
+            }
         }
+        if(levandeZebra > 0){
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
