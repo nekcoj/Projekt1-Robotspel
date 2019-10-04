@@ -4,8 +4,8 @@ public class Punkt {
     private double x, y;
 
     public Punkt() {        //default konstruktor som ger punkten ett random värde mellan 1-50
-        x = Math.round(Math.random() * (50-1) + 1);
-        y = Math.round(Math.random() * (50-1) + 1);
+        x = Math.round(Math.random() * (100-1) + 1);
+        y = Math.round(Math.random() * (100-1) + 1);
         //System.out.println("I Punkt default");
     }
 

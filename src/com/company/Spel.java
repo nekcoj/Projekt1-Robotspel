@@ -39,42 +39,55 @@ public class Spel {
     public void flyttaRobot() {
         for (int stega = 0; stega < 5; stega++) {
             for (int i = 0; i < rVekt.length; i++) {
+                long steg = Math.round(Math.random() * (5 - 1) + 1);           //slumpmässigt tal mellan 1 och 5 som bestämmer hur långt roboten skall gå
                 if (rVekt[i].getStatus()) {
                     double riktning = Math.round(Math.random() * (4 - 1) + 1);      //slumpmässigt tal som bestämmer vilket håll roboten ska gå.
                     switch ((int) riktning) {
                         case 1:         //adderar till x koordinat
-                            rVekt[i].startPunkt.setX(rVekt[i].startPunkt.getX() + (Math.round(Math.random() * (10 - 1) + 1)));
-                            if (rVekt[i].startPunkt.getX() > 50 && rVekt[i].getStatus()) {
-                                rVekt[i].startPunkt.setX(50);
-                                double restSteg = rVekt[i].startPunkt.getX() - 50;
-                                rVekt[i].startPunkt.setY(rVekt[i].startPunkt.getY() + restSteg);
+                            if (jagaZebra(steg)) {      //skickar inte värdet på variablen steg i metoden jagaZebra
+                            } else {
+                                rVekt[i].startPunkt.setX(rVekt[i].startPunkt.getX() + steg /*(Math.round(Math.random() * (10 - 1) + 1))*/);
+                                if (rVekt[i].startPunkt.getX() > 100 && rVekt[i].getStatus()) {
+                                    rVekt[i].startPunkt.setX(100);
+                                    double restSteg = rVekt[i].startPunkt.getX() - 100;
+                                    rVekt[i].startPunkt.setY(rVekt[i].startPunkt.getY() + restSteg);
+                                }
                             }
                             kollaPosition();
                             break;
                         case 2:         //adderar till y koordinat
-                            rVekt[i].startPunkt.setY(rVekt[i].startPunkt.getY() + (Math.round(Math.random() * (10 - 1) + 1)));
-                            if (rVekt[i].startPunkt.getY() > 50 && rVekt[i].getStatus()) {
-                                rVekt[i].startPunkt.setY(50);
-                                double restSteg = rVekt[i].startPunkt.getY() - 50;
-                                rVekt[i].startPunkt.setX(rVekt[i].startPunkt.getX() + restSteg);
+                            if (jagaZebra(steg)) {      //skickar inte värdet på variablen steg i metoden jagaZebra
+                            } else {
+                                rVekt[i].startPunkt.setY(rVekt[i].startPunkt.getY() + steg/*(Math.round(Math.random() * (10 - 1) + 1))*/);
+                                if (rVekt[i].startPunkt.getY() > 100 && rVekt[i].getStatus()) {
+                                    rVekt[i].startPunkt.setY(100);
+                                    double restSteg = rVekt[i].startPunkt.getY() - 100;
+                                    rVekt[i].startPunkt.setX(rVekt[i].startPunkt.getX() + restSteg);
+                                }
                             }
                             kollaPosition();
                             break;
                         case 3:         //subtraherar x koordinat
-                            rVekt[i].startPunkt.setX(rVekt[i].startPunkt.getX() - (Math.round(Math.random() * (10 - 1) + 1)));
-                            if (rVekt[i].startPunkt.getX() < 0 && rVekt[i].getStatus()) {
-                                rVekt[i].startPunkt.setX(0);
-                                double restSteg = Math.abs(rVekt[i].startPunkt.getX());
-                                rVekt[i].startPunkt.setY(rVekt[i].startPunkt.getY() - restSteg);
+                            if (jagaZebra(steg)) {      //skickar inte värdet på variablen steg i metoden jagaZebra
+                            } else {
+                                rVekt[i].startPunkt.setX(rVekt[i].startPunkt.getX() - steg/*(Math.round(Math.random() * (10 - 1) + 1))*/);
+                                if (rVekt[i].startPunkt.getX() < 0 && rVekt[i].getStatus()) {
+                                    rVekt[i].startPunkt.setX(0);
+                                    double restSteg = Math.abs(rVekt[i].startPunkt.getX());
+                                    rVekt[i].startPunkt.setY(rVekt[i].startPunkt.getY() - restSteg);
+                                }
                             }
                             kollaPosition();
                             break;
                         case 4:         //subtraherar y koordinat
-                            rVekt[i].startPunkt.setY(rVekt[i].startPunkt.getY() - (Math.round(Math.random() * (10 - 1) + 1)));
-                            if (rVekt[i].startPunkt.getY() < 0 && rVekt[i].getStatus()) {
-                                rVekt[i].startPunkt.setY(0);
-                                double restSteg = Math.abs(rVekt[i].startPunkt.getY());
-                                rVekt[i].startPunkt.setX(rVekt[i].startPunkt.getX() - restSteg);
+                            if (jagaZebra(steg)) {      //skickar inte värdet på variablen steg i metoden jagaZebra
+                            } else {
+                                rVekt[i].startPunkt.setY(rVekt[i].startPunkt.getY() - steg/*(Math.round(Math.random() * (10 - 1) + 1))*/);
+                                if (rVekt[i].startPunkt.getY() < 0 && rVekt[i].getStatus()) {
+                                    rVekt[i].startPunkt.setY(0);
+                                    double restSteg = Math.abs(rVekt[i].startPunkt.getY());
+                                    rVekt[i].startPunkt.setX(rVekt[i].startPunkt.getX() - restSteg);
+                                }
                             }
                             kollaPosition();
                             break;
@@ -102,7 +115,7 @@ public class Spel {
                             rVekt[i].startPunkt.printInfo();
                             rVekt[i].setDead();
                             System.out.println("och skickas till Zebra kyrkogården. ");
-                                    System.out.println("Gepard på plats " + j + " är mätt");
+                            System.out.println("Gepard på plats " + j + " är mätt");
                             rVekt[j].setFull();
                             rVekt[j].startPunkt.printInfo();
 
@@ -134,5 +147,25 @@ public class Spel {
         } else {
             return false;
         }
+    }
+
+    //metod som kollar om zebran är inom det ntal steg som geparden skall ta
+    public boolean jagaZebra(long jaga) {
+        for (int i = 0; i < rVekt.length; i++) {
+            if (i % 2 == 0) {
+                for (int j = 0; j < rVekt.length; j++) {
+                    if (j % 2 != 0) {
+                        if ((rVekt[j].startPunkt.getX() - rVekt[i].startPunkt.getX()) + (rVekt[j].startPunkt.getY() - rVekt[i].startPunkt.getY()) <= jaga && rVekt[j].getHungrig()) {
+                            rVekt[j].startPunkt.setX(rVekt[i].startPunkt.getX());
+                            rVekt[j].startPunkt.setY(rVekt[i].startPunkt.getY());
+                            System.out.println("Geparden hoppar på Zebran!");
+                            return true;
+                        }
+                    }
+
+                }
+            }
+        }
+        return false;
     }
 }
